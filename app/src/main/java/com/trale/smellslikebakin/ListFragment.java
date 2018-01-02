@@ -23,7 +23,9 @@ public class ListFragment extends Fragment {
         //We need to return a view that represents our fragment_list layout
         //The LayoutInflater is used to turn XML layouts to Views
         //second argument - view group - where our new view gets added
-        View view = inflater.inflate(R.layout.fragment_list, container);
+        //third argument - determines whether or not we attached this View to the ViewGroup provided in the second parameter
+            //If not set to false, it'll be added twice and we'll get an error.
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         return view;
     }
