@@ -17,9 +17,16 @@ import java.util.zip.Inflater;
  */
 
 public class ListFragment extends Fragment {
+
+    public interface OnRecipeSelectedInterface {
+        void onListRecipeSelected(int index);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        OnRecipeSelectedInterface listener = (OnRecipeSelectedInterface) getActivity();
+
         //The view returned by this method is what will displayed by our Fragment
         //return super.onCreate(inflater, container, savedInstanceState);
         //We need to return a view that represents our fragment_list layout
@@ -31,7 +38,7 @@ public class ListFragment extends Fragment {
 
         //Hook up recycler view
         RecyclerView recyclerView = view.findViewById(R.id.listRecyclerView);
-        ListAdapter listAdapter = new ListAdapter();
+        ListAdapter listAdapter = new ListAdapter(listener);
         recyclerView.setAdapter(listAdapter);
         //Fragments always have access to their activity through getActivity or getContext
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
